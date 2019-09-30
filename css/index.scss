@@ -1,0 +1,40 @@
+body {
+    margin: 0 auto;
+    width: 600px;
+    line-height: 1.5em;
+
+    ul {
+        padding: 0;
+
+        li {
+            list-style-type: none;
+            font-family: 'Turret Road', cursive;
+        }
+
+        li.name {
+            font-size: 25px;
+        }
+
+        li.desc {
+            font-size: 15px;
+            font-style: italic;
+        }
+    }
+
+    .character {
+        border: black 0.1em solid;
+        padding: 15px;
+        margin: 10px;
+        border-radius: 15px 15px 15px 15px;
+        text-align: center;
+    }
+
+    button {
+        margin: 5px;
+        padding: 15px;
+        font-size: 20px;
+        border-radius: 15px 15px 15px 15px;
+        box-shadow: 2px 2px;
+        font-family: 'Montserrat Alternates', sans-serif;
+    }
+}

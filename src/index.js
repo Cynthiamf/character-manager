@@ -6,15 +6,15 @@ axios
     var array = response.data;
     var div = "<div>";
     array.forEach(function(element) {
-      div += "<div>";
-      div += '<img src="data:image;base64,' + element.image + '"/>';
+      div += "<div class='character'>";
+      div += '<img src="data:image/jpeg;base64,' + element.image + '"/>';
       div += "<ul>";
-      div += "<li>" + element.name + "</li>";
-      div += "<li>" + element.shortDescription + "</li>";
+      div += "<li class='name'>" + element.name + "</li>";
+      div += "<li class='desc'>" + element.shortDescription + "</li>";
       div += "</ul>";
-      div += "<button>View</button>";
-      div += "<button>Edit</button>";
-      div += "<button>Delete</button>";
+      div += "<button>view</button>";
+      div += "<button>edit</button>";
+      div += "<button>delete</button>";
       div += "</div>";
     });
     div += "</div>";
