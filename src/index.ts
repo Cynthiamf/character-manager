@@ -1,6 +1,11 @@
 const axios = require("axios");
 
-// Make a request for a user with a given ID
+// document.getElementById("send").addEventListener("click", function(e) {
+//   let img = document.getElementById("img");
+//   let nameCharacter = document.getElementById("name").value;
+//   let shortDesc = document.getElementById("short-desc").value;
+//   let desc = document.getElementById("desc").value;
+// });
 
 function showDesc(el) {
   el.parentNode.querySelector(".desc").style.display = "block";
@@ -31,7 +36,7 @@ document.addEventListener("click", e => {
   }
 });
 
-function update() {}
+function edit() {}
 
 axios
   .get("https://character-database.becode.xyz/characters/")
@@ -39,7 +44,7 @@ axios
     const array = await response.data;
 
     console.log(array);
-    var div = "<div>";
+    let div = "<div>";
     add();
     //let contentDesc = document.getElementsByClassName("desc");
 
