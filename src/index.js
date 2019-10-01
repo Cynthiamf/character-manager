@@ -49,37 +49,6 @@ document.addEventListener("click", function (e) {
         showDesc(e.target);
     }
 });
-document.addEventListener("click", function (e) {
-    return __awaiter(this, void 0, void 0, function () {
-        var id, response, deletedHero, err_1;
-        return __generator(this, function (_a) {
-            switch (_a.label) {
-                case 0:
-                    id = +input.value;
-                    if (!(e.target && e.target.classList.contains("delete"))) return [3 /*break*/, 5];
-                    console.log("test");
-                    _a.label = 1;
-                case 1:
-                    _a.trys.push([1, 4, , 5]);
-                    return [4 /*yield*/, axios.get("https://character-database.becode.xyz/characters/" + id, {
-                            method: "DELETE"
-                        })];
-                case 2:
-                    response = _a.sent();
-                    return [4 /*yield*/, response];
-                case 3:
-                    deletedHero = _a.sent();
-                    console.log(deletedHero);
-                    return [3 /*break*/, 5];
-                case 4:
-                    err_1 = _a.sent();
-                    console.error("Unknown hero with id: " + id);
-                    return [3 /*break*/, 5];
-                case 5: return [2 /*return*/];
-            }
-        });
-    });
-});
 function add() {
     var ajout = document.createElement("button");
     ajout.className = "ajout";
@@ -90,13 +59,14 @@ function add() {
 }
 function showAdd(el) {
     el.parentNode.querySelector("#myModal").style.display = "block";
+    document.querySelector("body").style.overflow = "hidden";
 }
 document.addEventListener("click", function (e) {
     if (e.target && e.target.classList.contains("ajout")) {
         showAdd(e.target);
     }
 });
-function edit() { }
+function update() { }
 axios
     .get("https://character-database.becode.xyz/characters/")
     .then(function (response) {

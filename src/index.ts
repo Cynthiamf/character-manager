@@ -17,27 +17,6 @@ document.addEventListener("click", function (e) {
   }
 });
 
-document.addEventListener("click", async function (e) {
-  const id = +input.value; // parseInt(input.value, 10)
-
-  if (e.target && e.target.classList.contains("delete")) {
-    console.log("test");
-
-    try {
-      const response = await axios.get(`https://character-database.becode.xyz/characters/${id}`, {
-        method: "DELETE",
-        // headers: { "Content-Type": "application/json" },
-      });
-      const deletedHero = await response;
-
-      console.log(deletedHero)
-    } catch (err) {
-      console.error(`Unknown hero with id: ${id}`);
-    }
-  }
-});
-
-
 function add() {
   let ajout = document.createElement("button");
   ajout.className = "ajout";
@@ -49,6 +28,7 @@ function add() {
 
 function showAdd(el) {
   el.parentNode.querySelector("#myModal").style.display = "block";
+  document.querySelector("body").style.overflow = "hidden";
 }
 
 document.addEventListener("click", e => {
@@ -57,14 +37,10 @@ document.addEventListener("click", e => {
   }
 });
 
-<<<<<<< HEAD
 
 
 
 function update() { }
-=======
-function edit() {}
->>>>>>> dev
 
 axios
   .get("https://character-database.becode.xyz/characters/")
@@ -72,7 +48,7 @@ axios
     const array = await response.data;
 
     console.log(array);
-    let div = "<div>";
+    var div = "<div>";
     add();
     //let contentDesc = document.getElementsByClassName("desc");
 
