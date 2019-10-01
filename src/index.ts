@@ -1,22 +1,59 @@
 const axios = require("axios");
 
 // Make a request for a user with a given ID
+
+function showDesc(el) {
+  el.parentNode.querySelector(".desc").style.display = "block";
+}
+
+document.addEventListener("click", function(e) {
+  if (e.target && e.target.classList.contains("view")) {
+    showDesc(e.target);
+  }
+});
+
+function add() {
+  let ajout = document.createElement("button");
+  ajout.className = "ajout";
+  var newContent = document.createTextNode("Add Character");
+  ajout.appendChild(newContent);
+  var currentDiv = document.getElementById("root");
+  document.body.insertBefore(ajout, currentDiv);
+}
+
+function showAdd(el) {
+  el.parentNode.querySelector("#myModal").style.display = "block";
+}
+
+document.addEventListener("click", e => {
+  if (e.target && e.target.classList.contains("ajout")) {
+    showAdd(e.target);
+  }
+});
+
+function update() {}
+
 axios
   .get("https://character-database.becode.xyz/characters/")
-  .then(function(response) {
-    const array = response.data;
+  .then(async function(response) {
+    const array = await response.data;
+
+    console.log(array);
     var div = "<div>";
+    add();
+    //let contentDesc = document.getElementsByClassName("desc");
 
     array.forEach(function(element) {
       div += "<div class='character'>";
       div += '<img src="data:image/jpeg;base64,' + element.image + '"/>';
       div += "<ul>";
       div += "<li class='name'>" + element.name + "</li>";
-      div += "<li class='desc'>" + element.shortDescription + "</li>";
+      div += "<li class='short-desc'>" + element.shortDescription + "</li>";
+      div += "<li class='desc'>" + element.description + "</li>";
       div += "</ul>";
-      div += "<button>View</button>";
-      div += "<button>Edit</button>";
-      div += "<button>Delete</button>";
+      div += "<button class='view'>view</button>";
+      div += "<button class='edit'>edit</button>";
+      div += "<button class='delete'>delete</button>";
       div += "</div>";
     });
     div += "</div>";

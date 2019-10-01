@@ -2,6 +2,30 @@ body {
   margin: 0 auto;
   width: 600px;
   line-height: 1.5em; }
+  body #myModal {
+    display: none;
+    position: fixed;
+    top: 133px;
+    background-color: #f5f3ef;
+    height: 400px;
+    border: 5px;
+    width: 600px;
+    box-shadow: 30px 30px 100px; }
+    body #myModal .modal-content {
+      display: flex;
+      flex-direction: column;
+      padding: 5px; }
+      body #myModal .modal-content input {
+        margin: 6px;
+        font-size: 15px;
+        padding: 15px; }
+  body h1 {
+    font-family: 'Turret Road', cursive;
+    text-align: center; }
+  body button.ajout {
+    color: lightseagreen;
+    display: flex;
+    margin: 0 auto; }
   body ul {
     padding: 0; }
     body ul li {
@@ -9,9 +33,11 @@ body {
       font-family: 'Turret Road', cursive; }
     body ul li.name {
       font-size: 25px; }
-    body ul li.desc {
+    body ul li.short-desc {
       font-size: 15px;
       font-style: italic; }
+    body ul li.desc {
+      display: none; }
   body .character {
     border: black 0.1em solid;
     padding: 15px;
