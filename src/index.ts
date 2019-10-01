@@ -6,11 +6,32 @@ function showDesc(el) {
   el.parentNode.querySelector(".desc").style.display = "block";
 }
 
-document.addEventListener("click", function(e) {
+document.addEventListener("click", function (e) {
   if (e.target && e.target.classList.contains("view")) {
     showDesc(e.target);
   }
 });
+
+document.addEventListener("click", async function (e) {
+  const id = +input.value; // parseInt(input.value, 10)
+
+  if (e.target && e.target.classList.contains("delete")) {
+    console.log("test");
+
+    try {
+      const response = await axios.get(`https://character-database.becode.xyz/characters/${id}`, {
+        method: "DELETE",
+        // headers: { "Content-Type": "application/json" },
+      });
+      const deletedHero = await response;
+
+      console.log(deletedHero)
+    } catch (err) {
+      console.error(`Unknown hero with id: ${id}`);
+    }
+  }
+});
+
 
 function add() {
   let ajout = document.createElement("button");
@@ -31,11 +52,14 @@ document.addEventListener("click", e => {
   }
 });
 
-function update() {}
+
+
+
+function update() { }
 
 axios
   .get("https://character-database.becode.xyz/characters/")
-  .then(async function(response) {
+  .then(async function (response) {
     const array = await response.data;
 
     console.log(array);
@@ -43,7 +67,7 @@ axios
     add();
     //let contentDesc = document.getElementsByClassName("desc");
 
-    array.forEach(function(element) {
+    array.forEach(function (element) {
       div += "<div class='character'>";
       div += '<img src="data:image/jpeg;base64,' + element.image + '"/>';
       div += "<ul>";
@@ -59,10 +83,10 @@ axios
     div += "</div>";
     document.getElementById("root").innerHTML = div;
   })
-  .catch(function(error) {
+  .catch(function (error) {
     // handle error
     console.log(error);
   })
-  .finally(function() {
+  .finally(function () {
     // always executed
   });
