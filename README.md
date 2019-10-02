@@ -18,7 +18,7 @@
 
 ## Website
 
-https://list-of-characters.netlify.com/
+[Click here](https://list-of-characters.netlify.com/)
 
 ## Install
 
