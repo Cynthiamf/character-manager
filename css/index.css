@@ -25,7 +25,11 @@ body {
   body button.ajout {
     color: lightseagreen;
     display: flex;
-    margin: 0 auto; }
+    margin: 0 auto;
+    cursor: pointer; }
+    body button.ajout:hover {
+      color: black;
+      background-color: #6ae7ad; }
   body ul {
     padding: 0; }
     body ul li {
@@ -49,7 +53,17 @@ body {
     padding: 15px;
     font-size: 20px;
     border-radius: 15px 15px 15px 15px;
-    box-shadow: 2px 2px;
-    font-family: 'Montserrat Alternates', sans-serif; }
+    box-shadow: 2px 2px 5px;
+    font-family: 'Montserrat Alternates', sans-serif;
+    cursor: pointer; }
+  body button.delete:hover {
+    color: white;
+    background-color: #f04c4c; }
+  body button.edit:hover {
+    color: white;
+    background-color: #83b0d4; }
+  body button.view:hover {
+    color: white;
+    background-color: #cfb286; }
 
 /*# sourceMappingURL=index.css.map */

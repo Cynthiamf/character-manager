@@ -81,6 +81,34 @@ document.addEventListener("click", function (e) {
         showAdd(e.target);
     }
 });
+// axios.put(
+//   "https://character-database.becode.xyz/characters/:id",
+//   (req, res) => {
+//     console.log(req.params);
+//     res.send(req.params);
+//   }
+// );
+// .then(async function(response: { data: any }) {
+//   const array = await response.data;
+//   console.log(array);
+// });
+axios({
+    method: "put",
+    url: "https://character-database.becode.xyz/characters/:id",
+    data: {
+        description: "",
+        shortDescription: "",
+        name: "",
+        image: ""
+    }
+}).then(function (res) {
+    console.log(res);
+});
+document.addEventListener("click", function (e) {
+    if (e.target && e.target.classList.contains("edit")) {
+        edit();
+    }
+});
 function edit() { }
 axios
     .get("https://character-database.becode.xyz/characters/")

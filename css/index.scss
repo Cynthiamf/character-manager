@@ -36,6 +36,12 @@ body {
         color: lightseagreen;
         display: flex;
         margin: 0 auto;
+        cursor: pointer;
+
+        &:hover {
+            color: black;
+            background-color: rgb(106, 231, 173);
+        }
     }
 
     ul {
@@ -73,7 +79,29 @@ body {
         padding: 15px;
         font-size: 20px;
         border-radius: 15px 15px 15px 15px;
-        box-shadow: 2px 2px;
+        box-shadow: 2px 2px 5px;
         font-family: 'Montserrat Alternates', sans-serif;
+        cursor: pointer;
+    }
+
+    button.delete {
+        &:hover {
+            color: white;
+            background-color: rgb(240, 76, 76);
+        }
+    }
+
+    button.edit {
+        &:hover {
+            color: white;
+            background-color: rgb(131, 176, 212);
+        }
+    }
+
+    button.view {
+        &:hover {
+            color: white;
+            background-color: rgb(207, 178, 134);
+        }
     }
 }
