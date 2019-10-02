@@ -40,10 +40,6 @@ npm run test
 
 * Github: [@Cynthiamf](https://github.com/Cynthiamf)
 
-## 🤝 Contributing
-
-Contributions, issues and feature requests are welcome!<br />Feel free to check [issues page](https://github.com/Cynthiamf/character-manager/issues).
-
 ## Show your support
 
 Give a ⭐️ if this project helped you!
