@@ -1,13 +1,29 @@
 const axios = require("axios");
 
-// document.getElementById("send").addEventListener("click", function(e) {
-//   let img = document.getElementById("img");
-//   let nameCharacter = document.getElementById("name").value;
-//   let shortDesc = document.getElementById("short-desc").value;
-//   let desc = document.getElementById("desc").value;
-// });
+document.getElementById("send").addEventListener("click", function(e) {
+  let img = document.querySelector(".thumb").src;
+  const words = img.split(",");
+  img = words[1];
+  let nameCharacter = document.getElementById("name").value;
+  let shortDesc = document.getElementById("short-desc").value;
+  let desc = document.getElementById("desc").value;
+  console.log(img, nameCharacter, shortDesc, desc);
 
-function showDesc(el) {
+  axios({
+    method: "post",
+    url: "https://character-database.becode.xyz/characters/",
+    data: {
+      description: desc,
+      shortDescription: shortDesc,
+      name: nameCharacter,
+      image: img
+    }
+  }).then((res: any) => {
+    console.log(res);
+  });
+});
+
+function showDesc(el: EventTarget) {
   el.parentNode.querySelector(".desc").style.display = "block";
 }
 
@@ -26,7 +42,7 @@ function add() {
   document.body.insertBefore(ajout, currentDiv);
 }
 
-function showAdd(el) {
+function showAdd(el: EventTarget) {
   el.parentNode.querySelector("#myModal").style.display = "block";
   document.querySelector("body").style.overflow = "hidden";
 }
@@ -44,7 +60,11 @@ function update() { }
 
 axios
   .get("https://character-database.becode.xyz/characters/")
+<<<<<<< HEAD
   .then(async function (response) {
+=======
+  .then(async function(response: { data: any }) {
+>>>>>>> dev
     const array = await response.data;
 
     console.log(array);
@@ -52,7 +72,16 @@ axios
     add();
     //let contentDesc = document.getElementsByClassName("desc");
 
+<<<<<<< HEAD
     array.forEach(function (element) {
+=======
+    array.forEach(function(element: {
+      image: string;
+      name: string;
+      shortDescription: string;
+      description: string;
+    }) {
+>>>>>>> dev
       div += "<div class='character'>";
       div += '<img src="data:image/jpeg;base64,' + element.image + '"/>';
       div += "<ul>";
@@ -68,7 +97,11 @@ axios
     div += "</div>";
     document.getElementById("root").innerHTML = div;
   })
+<<<<<<< HEAD
   .catch(function (error) {
+=======
+  .catch(function(error: any) {
+>>>>>>> dev
     // handle error
     console.log(error);
   })

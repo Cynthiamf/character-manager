@@ -35,12 +35,27 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 var axios = require("axios");
-// document.getElementById("send").addEventListener("click", function(e) {
-//   let img = document.getElementById("img");
-//   let nameCharacter = document.getElementById("name").value;
-//   let shortDesc = document.getElementById("short-desc").value;
-//   let desc = document.getElementById("desc").value;
-// });
+document.getElementById("send").addEventListener("click", function (e) {
+    var img = document.querySelector(".thumb").src;
+    var words = img.split(",");
+    img = words[1];
+    var nameCharacter = document.getElementById("name").value;
+    var shortDesc = document.getElementById("short-desc").value;
+    var desc = document.getElementById("desc").value;
+    console.log(img, nameCharacter, shortDesc, desc);
+    axios({
+        method: "post",
+        url: "https://character-database.becode.xyz/characters/",
+        data: {
+            description: desc,
+            shortDescription: shortDesc,
+            name: nameCharacter,
+            image: img
+        }
+    }).then(function (res) {
+        console.log(res);
+    });
+});
 function showDesc(el) {
     el.parentNode.querySelector(".desc").style.display = "block";
 }
