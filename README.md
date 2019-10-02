@@ -16,6 +16,12 @@
 
 ### 🏠 [Homepage](https://list-of-characters.netlify.com/)
 
+## Website
+
+```sh
+https://list-of-characters.netlify.com/
+```
+
 ## Install
 
 ```sh
