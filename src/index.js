@@ -54,6 +54,7 @@ document.getElementById("send").addEventListener("click", function (e) {
         }
     }).then(function (res) {
         console.log(res);
+        window.location.reload(true);
     });
 });
 function showDesc(el) {
@@ -73,6 +74,7 @@ function add() {
     document.body.insertBefore(ajout, currentDiv);
 }
 function showAdd(el) {
+    document.getElementById("modify").style.display = "none";
     el.parentNode.querySelector("#myModal").style.display = "block";
     document.querySelector("body").style.overflow = "hidden";
 }
@@ -81,35 +83,60 @@ document.addEventListener("click", function (e) {
         showAdd(e.target);
     }
 });
-// axios.put(
-//   "https://character-database.becode.xyz/characters/:id",
-//   (req, res) => {
-//     console.log(req.params);
-//     res.send(req.params);
-//   }
-// );
-// .then(async function(response: { data: any }) {
-//   const array = await response.data;
-//   console.log(array);
-// });
-axios({
-    method: "put",
-    url: "https://character-database.becode.xyz/characters/:id",
-    data: {
-        description: "",
-        shortDescription: "",
-        name: "",
-        image: ""
-    }
-}).then(function (res) {
-    console.log(res);
-});
+function showEditModal() {
+    document.getElementById("send").style.display = "none";
+    document.querySelector("#myModal").style.display = "block";
+    document.querySelector("body").style.overflow = "hidden";
+}
 document.addEventListener("click", function (e) {
     if (e.target && e.target.classList.contains("edit")) {
-        edit();
+        var parentElement = e.target.closest(".character");
+        var parentElementID_1 = parentElement.getAttribute("data-id");
+        axios
+            .get("https://character-database.becode.xyz/characters/" + parentElementID_1)
+            .then(function (res) {
+            var hero = res.data;
+            var span = document.createElement("span");
+            span.id = "imageContainer";
+            span.innerHTML = "<img class=\"thumb\" src=\"data:image/png;base64," + hero.image + "\"/>";
+            document.getElementById("list").insertBefore(span, null);
+            document.getElementById("name").value = hero.name;
+            document.getElementById("short-desc").value = hero.shortDescription;
+            document.getElementById("desc").value = hero.description;
+            console.log(hero.name);
+        });
+        showEditModal();
+        document.getElementById("modify").addEventListener("click", function (e) {
+            var img = document.querySelector(".thumb").src;
+            var words = img.split(",");
+            img = words[1];
+            var nameCharacter = document.getElementById("name").value;
+            var shortDesc = document.getElementById("short-desc").value;
+            var desc = document.getElementById("desc").value;
+            axios({
+                method: "put",
+                url: "https://character-database.becode.xyz/characters/" + parentElementID_1,
+                data: {
+                    description: desc,
+                    shortDescription: shortDesc,
+                    name: nameCharacter,
+                    image: img
+                }
+            }).then(function (res) {
+                window.location.reload(true);
+            });
+        });
+    }
+    if (e.target && e.target.classList.contains("delete")) {
+        var parentElement = e.target.closest(".character");
+        var parentElementID = parentElement.getAttribute("data-id");
+        var confirmDelete = confirm("Are you sure to delete this character?");
+        if (confirmDelete) {
+            axios["delete"]("https://character-database.becode.xyz/characters/" + parentElementID);
+            parentElement.parentNode.removeChild(parentElement);
+        }
     }
 });
-function edit() { }
 axios
     .get("https://character-database.becode.xyz/characters/")
     .then(function (response) {
@@ -125,7 +152,7 @@ axios
                     add();
                     //let contentDesc = document.getElementsByClassName("desc");
                     array.forEach(function (element) {
-                        div += "<div class='character'>";
+                        div += "<div class='character' data-id='" + element.id + "'>";
                         div += '<img src="data:image/jpeg;base64,' + element.image + '"/>';
                         div += "<ul>";
                         div += "<li class='name'>" + element.name + "</li>";
@@ -133,7 +160,7 @@ axios
                         div += "<li class='desc'>" + element.description + "</li>";
                         div += "</ul>";
                         div += "<button class='view'>view</button>";
-                        div += "<button class='edit'>edit</button>";
+                        div += "<button class='edit' >edit</button>";
                         div += "<button class='delete'>delete</button>";
                         div += "</div>";
                     });

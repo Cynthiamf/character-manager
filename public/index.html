@@ -14,7 +14,7 @@
   <body>
     <h1>List of characters</h1>
     <div id="myModal" class="modal">
-      <form id="createForm" action="javascript:;" class="modal-content">
+      <form id="createForm" class="modal-content">
         <style>
           .thumb {
             height: 75px;
@@ -52,6 +52,7 @@
                     escape(theFile.name),
                     '"/>'
                   ].join("");
+                  document.getElementById("list").innerHTML = "";
                   document.getElementById("list").insertBefore(span, null);
                 };
               })(f);
@@ -71,9 +72,12 @@
           type="short-desc"
           placeholder="Short Description"
         />
-        <input id="desc" type="desc" placeholder="Description" />
-        <button id="send" value="envoyer" methode="POST" type="submit">
+        <input id="desc" type="text" placeholder="Description" />
+        <button id="send" value="envoyer" type="button">
           Send
+        </button>
+        <button id="modify" value="envoyer" type="button">
+          Modify
         </button>
         <button id="quitter" class="quite" value="quitter">Close</button>
       </form>
