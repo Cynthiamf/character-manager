@@ -81,7 +81,7 @@ document.addEventListener("click", function (e) {
         showAdd(e.target);
     }
 });
-function update() { }
+function edit() { }
 axios
     .get("https://character-database.becode.xyz/characters/")
     .then(function (response) {

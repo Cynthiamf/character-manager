@@ -1,6 +1,6 @@
 const axios = require("axios");
 
-document.getElementById("send").addEventListener("click", function(e) {
+document.getElementById("send").addEventListener("click", function (e) {
   let img = document.querySelector(".thumb").src;
   const words = img.split(",");
   img = words[1];
@@ -56,15 +56,11 @@ document.addEventListener("click", e => {
 
 
 
-function update() { }
+function edit() { }
 
 axios
   .get("https://character-database.becode.xyz/characters/")
-<<<<<<< HEAD
-  .then(async function (response) {
-=======
-  .then(async function(response: { data: any }) {
->>>>>>> dev
+  .then(async function (response: { data: any }) {
     const array = await response.data;
 
     console.log(array);
@@ -72,16 +68,12 @@ axios
     add();
     //let contentDesc = document.getElementsByClassName("desc");
 
-<<<<<<< HEAD
-    array.forEach(function (element) {
-=======
-    array.forEach(function(element: {
+    array.forEach(function (element: {
       image: string;
       name: string;
       shortDescription: string;
       description: string;
     }) {
->>>>>>> dev
       div += "<div class='character'>";
       div += '<img src="data:image/jpeg;base64,' + element.image + '"/>';
       div += "<ul>";
@@ -97,11 +89,7 @@ axios
     div += "</div>";
     document.getElementById("root").innerHTML = div;
   })
-<<<<<<< HEAD
-  .catch(function (error) {
-=======
-  .catch(function(error: any) {
->>>>>>> dev
+  .catch(function (error: any) {
     // handle error
     console.log(error);
   })
