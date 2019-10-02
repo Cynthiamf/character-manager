@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>List of characters</title>
+    <link rel="stylesheet" href="../css/index.css" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Cinzel|Josefin+Sans|Montserrat+Alternates|Rajdhani|Turret+Road|Vibes&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <h1>List of characters</h1>
+    <div id="myModal" class="modal">
+      <form id="createForm" action="javascript:;" class="modal-content">
+        <style>
+          .thumb {
+            height: 75px;
+            border: 1px solid #000;
+            margin: 10px 5px 0 0;
+          }
+        </style>
+
+        <input type="file" id="files" name="files[]" multiple />
+        <output id="list"></output>
+
+        <script>
+          function handleFileSelect(evt) {
+            var files = evt.target.files; // FileList object
+
+            // Loop through the FileList and render image files as thumbnails.
+            for (var i = 0, f; (f = files[i]); i++) {
+              // Only process image files.
+              if (!f.type.match("image.*")) {
+                continue;
+              }
+
+              var reader = new FileReader();
+
+              // Closure to capture the file information.
+              reader.onload = (function(theFile) {
+                return function(e) {
+                  // Render thumbnail.
+                  var span = document.createElement("span");
+                  span.id = "imageContainer";
+                  span.innerHTML = [
+                    '<img class="thumb" src="',
+                    e.target.result,
+                    '" title="',
+                    escape(theFile.name),
+                    '"/>'
+                  ].join("");
+                  document.getElementById("list").insertBefore(span, null);
+                };
+              })(f);
+
+              // Read in the image file as a data URL.
+              reader.readAsDataURL(f);
+            }
+          }
+
+          document
+            .getElementById("files")
+            .addEventListener("change", handleFileSelect, false);
+        </script>
+        <input id="name" type="name" placeholder="Name" />
+        <input
+          id="short-desc"
+          type="short-desc"
+          placeholder="Short Description"
+        />
+        <input id="desc" type="desc" placeholder="Description" />
+        <button id="send" value="envoyer" methode="POST" type="submit">
+          Send
+        </button>
+        <button id="quitter" class="quite" value="quitter">Close</button>
+      </form>
+    </div>
+    <script src="../src/index.js"></script>
+    <div id="root"></div>
+  </body>
+</html>
