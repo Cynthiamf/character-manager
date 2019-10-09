@@ -42,7 +42,7 @@ npm run test
 
 👤 **C. Martiny / A. Henrottay**
 
-* Github: [@Cynthiamf](https://github.com/Cynthiamf)
+* Github: [@Cynthiamf](https://github.com/Cynthiamf), [@amaury2409](https://github.com/amaury2409)
 
 ## Show your support
 
